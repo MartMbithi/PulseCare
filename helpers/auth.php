@@ -79,8 +79,6 @@ if (isset($_POST['Login'])) {
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['user_access_level'] = $row['user_access_level'];
         $_SESSION['user_email'] = $row['user_email'];
-        $_SESSION['user_phone'] = $row['user_phone'];
-        $_SESSION['user_names'] = $row['user_names'];
         $_SESSION['success'] = 'Login successful';
 
 
