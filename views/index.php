@@ -79,6 +79,8 @@ require_once('../partials/head.php');
                 <div class="card">
                     <div class="card-body">
                         <?php include('../partials/auth_header.php'); ?>
+                        <h4 class="mb-2 text-center">Welcome to PulseCare!</h4>
+                        <p class="mb-4 text-center">Improving patient experience through realtime feedbacks</p>
                         <form id="formAuthentication" class="mb-3" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="">Email</label>

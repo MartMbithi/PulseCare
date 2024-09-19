@@ -52,5 +52,4 @@
         <span class="app-brand-text demo text-body fw-bolder">PulseCare</span>
     </a>
 </div>
-<h4 class="mb-2 text-center">Welcome to PulseCare!</h4>
-<p class="mb-4 text-center">Improving patient experience through realtime feedbacks</p>
+
