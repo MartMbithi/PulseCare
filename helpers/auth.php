@@ -137,7 +137,7 @@ if (isset($_POST['Reset_Password_Step_1'])) {
     $res = mysqli_query($mysqli, $staff_check_sql);
     if (mysqli_num_rows($res) > 0) {
         $_SESSION['user_email'] = $user_email;
-        $_SESSION['success'] = "Password reset successful, proceed to login";
+        $_SESSION['success'] = "Email validated, proceed to resetting password";
         header('Location: confirm_password');
         exit;
     } else {

@@ -29,4 +29,16 @@
     <script src="../public/vendor/js/helpers.js"></script>
     <script src="../public/js/config.js"></script>
     <link rel="stylesheet" href="../public/vendor/libs/sweetalert2/sweetalert2.min.css" />
+    <?php
+    /* Alert Sesion Via Alerts */
+    if (isset($_SESSION['success'])) {
+        $success = $_SESSION['success'];
+        unset($_SESSION['success']);
+    }
+    /* Alert Sesion Via Alerts */
+    if (isset($_SESSION['err'])) {
+        $err = $_SESSION['err'];
+        unset($_SESSION['err']);
+    }
+    ?>
 </head>
