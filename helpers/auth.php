@@ -177,3 +177,33 @@ if (isset($_POST['Reset_Password_Step_2'])) {
         }
     }
 }
+
+
+/* Register Account */
+if (isset($_POST['RegisterAccount'])) {
+    $user_names = mysqli_real_escape_string($mysqli, $_POST['user_names']);
+    $user_email = mysqli_real_escape_string($mysqli, $_POST['user_email']);
+    $user_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['user_password'])));
+    $user_designation = 'Patient';
+    $user_access_level = $user_designation;
+    $user_phone = mysqli_real_escape_string($mysqli, $_POST['user_phone']);
+
+    /* Prevent Duplicates On Email And Contacts */
+    $staff_check_sql = "SELECT * FROM users WHERE user_email = '{$user_email}' ||  user_phone = '{$user_phone}'";
+    $res = mysqli_query($mysqli, $staff_check_sql);
+    if (mysqli_num_rows($res) > 0) {
+        $err = "Email or Phone number already exists";
+    } else {
+        if (mysqli_query(
+            $mysqli,
+            "INSERT INTO users (user_names, user_email, user_password, user_designation, user_access_level, user_phone) 
+            VALUES('{$user_names}', '{$user_email}', '{$user_password}', '{$user_designation}', '{$user_access_level}', '{$user_phone}')"
+        )) {
+            $_SESSION['success'] = "Account created successfully, proceed to login";
+            header('Location: ../');
+            exit;
+        } else {
+            $err = "Failed, please try again";
+        }
+    }
+}
