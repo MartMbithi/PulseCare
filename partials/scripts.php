@@ -6,3 +6,5 @@
 <script src="../public/vendor/libs/apex-charts/apexcharts.js"></script>
 <script src="../public/js/main.js"></script>
 <script src="../public/js/dashboards-analytics.js"></script>
+<script src="../public/vendor/libs/sweetalert2/sweetalert2.all.min.js"></script>
+<?php include('alert.php'); ?>

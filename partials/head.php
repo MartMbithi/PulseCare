@@ -6,7 +6,6 @@
     data-theme="theme-default"
     data-assets-path="../public/"
     data-template="vertical-menu-template-free">
-
 <head>
     <meta charset="utf-8" />
     <meta
@@ -29,4 +28,5 @@
     <link rel="stylesheet" href="../public/vendor/libs/apex-charts/apex-charts.css" />
     <script src="../public/vendor/js/helpers.js"></script>
     <script src="../public/js/config.js"></script>
+    <link rel="stylesheet" href="../public/vendor/libs/sweetalert2/sweetalert2.min.css" />
 </head>
