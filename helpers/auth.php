@@ -91,7 +91,7 @@ if (isset($_POST['Login'])) {
 
                 /* Check If 2FA Is Enabled */
                 $_SESSION['success'] = 'Logged in successfully';
-                header('Location: dashboard');
+                header('Location: home');
                 exit;
             } else {
                 /* Force Password Reset If User Account Marked To Reset Password */
@@ -131,22 +131,15 @@ if (isset($_POST['Change_Password'])) {
 /* Reset Password Step 1 */
 if (isset($_POST['Reset_Password_Step_1'])) {
     $user_email = mysqli_real_escape_string($mysqli, $_POST['user_email']);
-    $reset_token = mysqli_real_escape_string($mysqli, $tk);
-    $reset_url = $url . $reset_token;
 
     /* Check If This Account Exists */
     $staff_check_sql = "SELECT * FROM users WHERE user_email = '{$user_email}' AND user_account_status = '0'";
     $res = mysqli_query($mysqli, $staff_check_sql);
     if (mysqli_num_rows($res) > 0) {
-        /*Persist Reset Token */
-        $reset_token_sql = "UPDATE users SET user_password_reset_token = '{$reset_token}' WHERE user_email = '{$user_email}'";
-
-        include('../mailers/reset_password.php');
-        if (mysqli_query($mysqli, $reset_token_sql)) {
-            $success = "Password reset instructions sent to your email";
-        } else {
-            $err = "Failed to reset account password, please try again later";
-        }
+        $_SESSION['user_email'] = $user_email;
+        $_SESSION['success'] = "Password reset successful, proceed to login";
+        header('Location: confirm_password');
+        exit;
     } else {
         $err = "Email does not exist";
     }
@@ -155,7 +148,7 @@ if (isset($_POST['Reset_Password_Step_1'])) {
 
 /* Reset Password Step 2 */
 if (isset($_POST['Reset_Password_Step_2'])) {
-    $reset_token = mysqli_real_escape_string($mysqli, $_GET['token']);
+    $user_email = mysqli_real_escape_string($mysqli, $_SESSION['user_email']);
     $new_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['new_password'])));
     $confirm_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['confirm_password'])));
 
@@ -165,14 +158,15 @@ if (isset($_POST['Reset_Password_Step_2'])) {
     } else {
 
         /* Update staff password */
-        $staff_check_sql = "SELECT * FROM users WHERE user_password_reset_token = '{$reset_token}'";
+        $staff_check_sql = "SELECT * FROM users WHERE user_email = '{$user_email}'";
         $res = mysqli_query($mysqli, $staff_check_sql);
         if (mysqli_num_rows($res) > 0) {
             /* Update staff passwords */
-            $update_password_sql = "UPDATE users SET user_password = '{$new_password}', user_password_reset_token = '' WHERE user_password_reset_token = '{$reset_token}'";
+            $update_password_sql = "UPDATE users SET user_password = '{$new_password}'  WHERE user_email = '{$user_email}'";
             if (mysqli_query($mysqli, $update_password_sql)) {
+                unset($_SESSION['user_email']);
                 $_SESSION['success'] = "Password reset successful, proceed to login";
-                header('Location: login');
+                header('Location: ../');
                 exit;
             } else {
                 $err = "Failed, please try again later";
@@ -180,5 +174,3 @@ if (isset($_POST['Reset_Password_Step_2'])) {
         }
     }
 }
-
-
