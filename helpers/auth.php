@@ -196,8 +196,8 @@ if (isset($_POST['RegisterAccount'])) {
     } else {
         if (mysqli_query(
             $mysqli,
-            "INSERT INTO users (user_names, user_email, user_password, user_designation, user_access_level, user_phone) 
-            VALUES('{$user_names}', '{$user_email}', '{$user_password}', '{$user_designation}', '{$user_access_level}', '{$user_phone}')"
+            "INSERT INTO users (user_names, user_email, user_password, user_designation, user_access_level, user_phone, user_change_password) 
+            VALUES('{$user_names}', '{$user_email}', '{$user_password}', '{$user_designation}', '{$user_access_level}', '{$user_phone}', '0')"
         )) {
             $_SESSION['success'] = "Account created successfully, proceed to login";
             header('Location: ../');

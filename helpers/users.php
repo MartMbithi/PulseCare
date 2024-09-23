@@ -64,6 +64,31 @@
  */
 
 /* Register User */
+if (isset($_POST['Register_User'])) {
+    $user_names = mysqli_real_escape_string($mysqli, $_POST['user_names']);
+    $user_email = mysqli_real_escape_string($mysqli, $_POST['user_email']);
+    $user_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['user_password'])));
+    $user_phone = mysqli_real_escape_string($mysqli, $_POST['user_phone']);
+    $user_access_level = mysqli_real_escape_string($mysqli, $_POST['user_access_level']);
+    $user_designation = mysqli_real_escape_string($mysqli, $_POST['user_designation']);
+
+    /* Prevent Duplications */
+    $duplicator_checker = "SELECT * FROM users WHERE user_email = '{$user_email}' ||  user_phone = '{$user_phone}'";
+    $res = mysqli_query($mysqli, $duplicator_checker);
+    if (mysqli_num_rows($res) > 0) {
+        $err = "Email / Phone number already exists";
+    } else {
+        if (mysqli_query(
+            $mysqli,
+            "INSERT INTO users(user_names, user_email, user_password, user_phone, user_access_level, user_designation)
+            VALUES('{$user_names}', '{$user_email}', '{$user_password}', '{$user_phone}', '{$user_access_level}', '{$user_designation}')"
+        )) {
+            $success = "Accounted created successfully";
+        } else {
+            $err = "Failed, please try again";
+        }
+    }
+}
 
 /* Update User */
 if (isset($_POST['Update_User'])) {
