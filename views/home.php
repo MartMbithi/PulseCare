@@ -128,7 +128,7 @@ require_once('../partials/head.php');
                                                     </div>
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Medical Services</span>
-                                                <h3 class="card-title mb-2">$12,628</h3>
+                                                <h3 class="card-title mb-2"><?php echo $medical_services; ?></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@ require_once('../partials/head.php');
                                                     </div>
                                                 </div>
                                                 <span>Doctors</span>
-                                                <h3 class="card-title text-nowrap mb-1">$4,679</h3>
+                                                <h3 class="card-title text-nowrap mb-1"><?php echo $doctors; ?></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@ require_once('../partials/head.php');
                                                     </div>
                                                 </div>
                                                 <span class="d-block mb-1">Patients</span>
-                                                <h3 class="card-title text-nowrap mb-2">$2,456</h3>
+                                                <h3 class="card-title text-nowrap mb-2"><?php echo $patients; ?></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -186,21 +186,20 @@ require_once('../partials/head.php');
                                                     </div>
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Feedbacks</span>
-                                                <h3 class="card-title mb-2">$14,857</h3>
+                                                <h3 class="card-title mb-2"><?php echo $feedbacks; ?></h3>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-4">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
-                                                    <div class="card-title">
-                                                        <h5 class="text-nowrap mb-2">Appointments</h5>
-                                                    </div>
-                                                    <div class="mt-sm-auto">
-                                                        <h3 class="mb-0">$84,686k</h3>
+                                                <div class="card-title d-flex align-items-start justify-content-between">
+                                                    <div class="avatar flex-shrink-0">
+                                                        <img src="../public/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
                                                     </div>
                                                 </div>
+                                                <span class="fw-semibold d-block mb-1">Appointments</span>
+                                                <h3 class="card-title mb-2"><?php echo $appointments; ?></h3>
                                             </div>
                                         </div>
                                     </div>

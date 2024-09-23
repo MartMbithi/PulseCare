@@ -63,9 +63,38 @@
  *
  */
 
-$query = "";
+$query = "SELECT COUNT(*) FROM medical_services";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
-$stmt->bind_result($assigned_not_evaluated_category_b);
+$stmt->bind_result($medical_services);
+$stmt->fetch();
+$stmt->close();
+
+$query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Doctor'";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($doctors);
+$stmt->fetch();
+$stmt->close();
+
+$query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Patient'";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($patients);
+$stmt->fetch();
+$stmt->close();
+
+$query = "SELECT COUNT(*) FROM feedbacks";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($feedbacks);
+$stmt->fetch();
+$stmt->close();
+
+
+$query = "SELECT COUNT(*) FROM appointments";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($appointments);
 $stmt->fetch();
 $stmt->close();
