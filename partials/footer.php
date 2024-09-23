@@ -5,7 +5,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            , made with ❤️ by
+            PulseCare, Made With ❤️ By
             <a href="https://devlan.co.ke" target="_blank" class="footer-link fw-bolder">DevLan Solutions LTD</a>
         </div>
     </div>
