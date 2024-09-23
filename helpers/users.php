@@ -110,6 +110,26 @@ if (isset($_POST['Update_User'])) {
     }
 }
 
+/* Change Password */
+if (isset($_POST['Change_Password'])) {
+    $user_id = mysqli_real_escape_string($mysqli, $_POST['user_id']);
+    $new_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['new_password'])));
+    $confirm_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['confirm_password'])));
+
+    if ($confirm_password != $new_password) {
+        $success = "Passwords does not match";
+    } else {
+        if (mysqli_query(
+            $mysqli,
+            "UPDATE users SET user_password = '{$confirm_password}' WHERE user_id = '{$user_id}'"
+        )) {
+            $success = "Password updated";
+        } else {
+            $err = "Failed, please try again";
+        }
+    }
+}
+
 /* Delete User */
 if (isset($_POST['Delete_User'])) {
     $user_id = mysqli_real_escape_string($mysqli, $_POST['user_id']);
