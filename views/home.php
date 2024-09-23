@@ -65,6 +65,7 @@
 session_start();
 require_once('../config/config.php');
 require_once('../config/checklogin.php');
+require_once('../functions/analytics.php');
 require_once('../partials/head.php');
 ?>
 
@@ -122,8 +123,8 @@ require_once('../partials/head.php');
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
                                                         <img
-                                                            src="../public/img/icons/unicons/chart-success.png"
-                                                            alt="chart success"
+                                                            src="../public/img/icons/unicons/healthcare.png"
+                                                            alt="Medical service"
                                                             class="rounded" />
                                                     </div>
                                                 </div>
@@ -138,8 +139,8 @@ require_once('../partials/head.php');
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
                                                         <img
-                                                            src="../public/img/icons/unicons/wallet-info.png"
-                                                            alt="Credit Card"
+                                                            src="../public/img/icons/unicons/doctor.png"
+                                                            alt="Doc"
                                                             class="rounded" />
                                                     </div>
                                                 </div>
@@ -169,7 +170,7 @@ require_once('../partials/head.php');
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="../public/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                                                        <img src="../public/img/icons/unicons/patient.png" alt="Patient" class="rounded" />
                                                     </div>
                                                 </div>
                                                 <span class="d-block mb-1">Patients</span>
@@ -182,7 +183,7 @@ require_once('../partials/head.php');
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="../public/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                                                        <img src="../public/img/icons/unicons/welfare.png" alt="Appointment" class="rounded" />
                                                     </div>
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Feedbacks</span>
@@ -195,7 +196,7 @@ require_once('../partials/head.php');
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="../public/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                                                        <img src="../public/img/icons/unicons/medical-appointment.png" alt="Appointment" class="rounded" />
                                                     </div>
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Appointments</span>
