@@ -99,52 +99,80 @@ require_once('../partials/head.php');
                                 <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
 
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card mb-4">
-                                            <h5 class="card-header">Profile Details</h5>
-                                            <!-- Account -->
-                                            <hr class="my-0" />
-                                            <div class="card-body">
-                                                <form method="POST">
-                                                    <div class="row">
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="firstName" class="form-label">Full Names</label>
-                                                            <input
-                                                                class="form-control"
-                                                                type="text"
-                                                                name="user_names"
-                                                                value="<?php echo $user_detail['user_names']; ?>"
-                                                                autofocus />
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="email" class="form-label">E-mail</label>
-                                                            <input
-                                                                class="form-control"
-                                                                type="text"
-                                                                id="email"
-                                                                name="user_email"
-                                                                value="<?php echo $user_detail['user_email']; ?>" />
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="organization" class="form-label">Phone number</label>
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                name="user_phone"
-                                                                value="<?php echo $user_detail['user_phone']; ?>" />
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="address" class="form-label">Designation</label>
-                                                            <input type="text" readonly class="form-control" id="address" name="user_designation" value="<?php echo $user_detail['user_designation']; ?>" />
-                                                            <input type="hidden" class="form-control" id="address" name="user_access_level" value="<?php echo $user_detail['user_access_level']; ?>" />
-                                                            <input type="hidden" class="form-control" id="address" name="user_id" value="<?php echo $user_detail['user_id']; ?>" />
+                                    <div class="col-xl-12">
+                                        <div class="nav-align-top mb-4">
+                                            <ul class="nav nav-tabs nav-fill" role="tablist">
+                                                <li class="nav-item">
+                                                    <button
+                                                        type="button"
+                                                        class="nav-link active"
+                                                        role="tab"
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#navs-justified-home"
+                                                        aria-controls="navs-justified-home"
+                                                        aria-selected="true">
+                                                        <i class="tf-icons bx bx-user"></i> Personal Details
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <button
+                                                        type="button"
+                                                        class="nav-link"
+                                                        role="tab"
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#navs-justified-profile"
+                                                        aria-controls="navs-justified-profile"
+                                                        aria-selected="false">
+                                                        <i class="tf-icons bx bx-lock"></i> Authentication Details
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade show active" id="navs-justified-home" role="tabpanel">
+                                                    <form method="POST">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label for="firstName" class="form-label">Full Names</label>
+                                                                <input
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    name="user_names"
+                                                                    value="<?php echo $user_detail['user_names']; ?>"
+                                                                    autofocus />
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label for="email" class="form-label">E-mail</label>
+                                                                <input
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    id="email"
+                                                                    name="user_email"
+                                                                    value="<?php echo $user_detail['user_email']; ?>" />
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label for="organization" class="form-label">Phone number</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    name="user_phone"
+                                                                    value="<?php echo $user_detail['user_phone']; ?>" />
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label for="address" class="form-label">Designation</label>
+                                                                <input type="text" readonly class="form-control" id="address" name="user_designation" value="<?php echo $user_detail['user_designation']; ?>" />
+                                                                <input type="hidden" class="form-control" id="address" name="user_access_level" value="<?php echo $user_detail['user_access_level']; ?>" />
+                                                                <input type="hidden" class="form-control" id="address" name="user_id" value="<?php echo $user_detail['user_id']; ?>" />
 
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <button type="submit" name="Update_User" class="btn btn-primary me-2">Save</button>
-                                                    </div>
-                                                </form>
+                                                        <div class="mt-2">
+                                                            <button type="submit" name="Update_User" class="btn btn-primary me-2">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -152,20 +180,20 @@ require_once('../partials/head.php');
                             </div>
                     <?php }
                     } ?>
-
-                    <!-- Footer -->
-                    <?php require_once('../partials/footer.php'); ?>
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+                <!-- Footer -->
+                <?php require_once('../partials/footer.php'); ?>
+                <!-- / Footer -->
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
 
