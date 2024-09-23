@@ -135,9 +135,9 @@ require_once('../partials/head.php');
                                                         </div>
                                                         <div class="mb-3 col-md-6">
                                                             <label for="address" class="form-label">Designation</label>
-                                                            <input type="text" class="form-control" id="address" name="user_designation" value="<?php echo $user_detail['user_designation']; ?>" />
-                                                            <input type="text" class="form-control" id="address" name="user_access_level" value="<?php echo $user_detail['user_access_level']; ?>" />
-                                                            <input type="text" class="form-control" id="address" name="user_id" value="<?php echo $user_detail['user_id']; ?>" />
+                                                            <input type="text" readonly class="form-control" id="address" name="user_designation" value="<?php echo $user_detail['user_designation']; ?>" />
+                                                            <input type="hidden" class="form-control" id="address" name="user_access_level" value="<?php echo $user_detail['user_access_level']; ?>" />
+                                                            <input type="hidden" class="form-control" id="address" name="user_id" value="<?php echo $user_detail['user_id']; ?>" />
 
                                                         </div>
                                                     </div>
