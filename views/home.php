@@ -158,7 +158,11 @@ require_once('../partials/head.php');
                                         <div class="col-md-12">
                                             <h5 class="card-header m-0 me-2 pb-3">Appointments Calendar For <?php echo date('M, Y'); ?></h5>
                                             <div class="card-body">
-                                                <?php include('../functions/calendar.php'); ?>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <?php include('../functions/calendar.php'); ?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

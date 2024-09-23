@@ -18,8 +18,8 @@
 <script>
     /* Init Data Tables */
     $(document).ready(function() {
-        $('.table').DataTable();
-        $('.table td').css('white-space', 'initial');
+        $('.data_table').DataTable();
+        $('.data_table td').css('white-space', 'initial');
 
     });
 

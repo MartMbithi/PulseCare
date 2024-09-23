@@ -63,19 +63,17 @@
  *
  */
 
-
-// Function to get the number of appointments for each day
 function getAppointmentsPerDay($year, $month, $mysqli)
 {
     $appointments = [];
 
     // Use STR_TO_DATE to convert `appointment_date` from VARCHAR to DATE
     $query = "SELECT DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d')) AS day, 
-              COUNT(*) AS total_appointments 
-              FROM appointments 
-              WHERE YEAR(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $year 
-              AND MONTH(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $month 
-              GROUP BY DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d'))";
+               COUNT(*) AS total_appointments 
+               FROM appointments 
+               WHERE YEAR(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $year 
+               AND MONTH(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $month 
+               GROUP BY DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d'))";
 
     $result = mysqli_query($mysqli, $query);
 
@@ -105,7 +103,7 @@ foreach ($appointments as $appointment) {
 $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
 
-echo "<table cellpadding='5'>";
+echo "<table class='table table-bordered table-striped text-center'>";
 echo "<thead class='table-light'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>";
 echo "<tbody>";
 
@@ -124,7 +122,15 @@ for ($day = 1; $day <= $daysInMonth; $day++) {
     }
 
     $appointmentCount = isset($appointmentsPerDay[$day]) ? $appointmentsPerDay[$day] : 0;
-    echo "<td><strong>$day</strong><br><span class='badge bg-primary'>Appointments: $appointmentCount</span></td>";
+
+    echo "<td><strong>$day</strong>";
+
+    // Only show badge if there are appointments for that day
+    if ($appointmentCount > 0) {
+        echo "<br><span class='badge bg-primary'>$appointmentCount</span>";
+    }
+
+    echo "</td>";
 }
 
 // Empty cells after the last day
