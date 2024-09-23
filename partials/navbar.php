@@ -70,6 +70,8 @@ $users_sql = mysqli_query(
 );
 if (mysqli_num_rows($users_sql) > 0) {
     while ($user_detail = mysqli_fetch_array($users_sql)) {
+        $user_name = $user_detail['user_names'];
+        global $user_name;
 ?>
         <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
