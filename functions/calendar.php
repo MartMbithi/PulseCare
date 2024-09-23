@@ -1,6 +1,6 @@
 <?php
 /*
- *   Crafted On Fri Sep 20 2024
+ *   Crafted On Mon Sep 23 2024
  *   By the one and only Martin Mbithi (martin@devlan.co.ke)
  *   
  *   www.devlan.co.ke
@@ -63,38 +63,75 @@
  *
  */
 
-$query = "SELECT COUNT(*) FROM medical_services";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($medical_services);
-$stmt->fetch();
-$stmt->close();
 
-$query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Doctor'";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($doctors);
-$stmt->fetch();
-$stmt->close();
+// Function to get the number of appointments for each day
+function getAppointmentsPerDay($year, $month, $mysqli)
+{
+    $appointments = [];
 
-$query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Patient'";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($patients);
-$stmt->fetch();
-$stmt->close();
+    // Use STR_TO_DATE to convert `appointment_date` from VARCHAR to DATE
+    $query = "SELECT DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d')) AS day, 
+              COUNT(*) AS total_appointments 
+              FROM appointments 
+              WHERE YEAR(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $year 
+              AND MONTH(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $month 
+              GROUP BY DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d'))";
 
-$query = "SELECT COUNT(*) FROM feedbacks";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($feedbacks);
-$stmt->fetch();
-$stmt->close();
+    $result = mysqli_query($mysqli, $query);
 
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $appointments[] = $row;
+        }
+    }
 
-$query = "SELECT COUNT(*) FROM appointments";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($all_appointments);
-$stmt->fetch();
-$stmt->close();
+    return $appointments;
+}
+
+// Get current year and month, or set default
+$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+$month = isset($_GET['month']) ? $_GET['month'] : date('m');
+
+// Get appointments data
+$appointments = getAppointmentsPerDay($year, $month, $mysqli);
+
+// Build a lookup array for easy access
+$appointmentsPerDay = [];
+foreach ($appointments as $appointment) {
+    $appointmentsPerDay[$appointment['day']] = $appointment['total_appointments'];
+}
+
+// Generate the calendar view
+$daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+$firstDayOfMonth = date('w', strtotime("$year-$month-01"));
+
+echo "<table cellpadding='5'>";
+echo "<thead class='table-light'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>";
+echo "<tbody>";
+
+// Start the calendar
+echo "<tr>";
+
+// Empty cells before the first day
+for ($i = 0; $i < $firstDayOfMonth; $i++) {
+    echo "<td></td>";
+}
+
+// Print days with appointment counts
+for ($day = 1; $day <= $daysInMonth; $day++) {
+    if (($day + $firstDayOfMonth - 1) % 7 == 0 && $day != 1) {
+        echo "</tr><tr>"; // New row every Sunday
+    }
+
+    $appointmentCount = isset($appointmentsPerDay[$day]) ? $appointmentsPerDay[$day] : 0;
+    echo "<td><strong>$day</strong><br><span class='badge bg-primary'>Appointments: $appointmentCount</span></td>";
+}
+
+// Empty cells after the last day
+for ($i = ($firstDayOfMonth + $daysInMonth) % 7; $i < 7 && $i > 0; $i++) {
+    echo "<td></td>";
+}
+
+echo "</tr>";
+echo "</tbody>";
+echo "</table>";

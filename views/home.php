@@ -156,8 +156,10 @@ require_once('../partials/head.php');
                                 <div class="card">
                                     <div class="row row-bordered g-0">
                                         <div class="col-md-12">
-                                            <h5 class="card-header m-0 me-2 pb-3">Reservations Calendar</h5>
-                                            <div id="totalRevenueChart" class="px-2"></div>
+                                            <h5 class="card-header m-0 me-2 pb-3">Appointments Calendar For <?php echo date('M, Y'); ?></h5>
+                                            <div class="card-body">
+                                                <?php include('../functions/calendar.php'); ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +202,7 @@ require_once('../partials/head.php');
                                                     </div>
                                                 </div>
                                                 <span class="fw-semibold d-block mb-1">Appointments</span>
-                                                <h3 class="card-title mb-2"><?php echo $appointments; ?></h3>
+                                                <h3 class="card-title mb-2"><?php echo $all_appointments; ?></h3>
                                             </div>
                                         </div>
                                     </div>
