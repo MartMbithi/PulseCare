@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form method="POST" action="logout">
                 <div class="modal-body text-center text-danger">
-                    <img src='../public/images/merged_logos.png' height="80px"><br>
+                    <img src='../public/img/icons/logout.png' height="80px"><br>
                     <h4>Leaving so soon <br>
                         Have you finished exploring the system?
                     </h4>
