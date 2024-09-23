@@ -171,7 +171,26 @@ require_once('../partials/head.php');
                                                     </form>
                                                 </div>
                                                 <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
+                                                    <form method="POST">
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label for="organization" class="form-label">New Password</label>
+                                                                <input
+                                                                    type="password"
+                                                                    class="form-control"
+                                                                    name="new_password" />
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label for="address" class="form-label">Confirm Password</label>
+                                                                <input type="text" readonly class="form-control" id="address" name="confirm_password" />
+                                                                <input type="hidden" class="form-control" id="address" name="user_id" value="<?php echo $user_detail['user_id']; ?>" />
 
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <button type="submit" name="Change_Password" class="btn btn-primary me-2">Save</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
