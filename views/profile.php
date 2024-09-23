@@ -182,7 +182,7 @@ require_once('../partials/head.php');
                                                             </div>
                                                             <div class="mb-3 col-md-6">
                                                                 <label for="address" class="form-label">Confirm Password</label>
-                                                                <input type="text" readonly class="form-control" id="address" name="confirm_password" />
+                                                                <input type="password" class="form-control" id="address" name="confirm_password" />
                                                                 <input type="hidden" class="form-control" id="address" name="user_id" value="<?php echo $user_detail['user_id']; ?>" />
 
                                                             </div>
