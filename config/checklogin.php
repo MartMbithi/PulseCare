@@ -74,6 +74,11 @@ function check_login()
 		header("Location: http://$host$uri/$extra");
 	}
 }
+/* Global Variables */
+$user_id = mysqli_real_escape_string($mysqli, $_SESSION['user_id']);
+$user_access_level = mysqli_real_escape_string($mysqli, $_SESSION['user_access_level']);
+
+global 	$user_id, 	$user_access_level;
 
 /* Invoke This Siet */
 check_login();
