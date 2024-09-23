@@ -117,7 +117,7 @@ if (isset($_POST['Change_Password'])) {
     $confirm_password = sha1(md5(mysqli_real_escape_string($mysqli, $_POST['confirm_password'])));
 
     if ($confirm_password != $new_password) {
-        $success = "Passwords does not match";
+        $err = "Passwords does not match";
     } else {
         if (mysqli_query(
             $mysqli,

@@ -6,6 +6,7 @@
     data-theme="theme-default"
     data-assets-path="../public/"
     data-template="vertical-menu-template-free">
+
 <head>
     <meta charset="utf-8" />
     <meta
@@ -29,6 +30,9 @@
     <script src="../public/vendor/js/helpers.js"></script>
     <script src="../public/js/config.js"></script>
     <link rel="stylesheet" href="../public/vendor/libs/sweetalert2/sweetalert2.min.css" />
+    <!-- Data Tables CDN-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
     <?php
     /* Alert Sesion Via Alerts */
     if (isset($_SESSION['success'])) {
