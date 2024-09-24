@@ -136,7 +136,7 @@ require_once('../partials/head.php');
                                                                         <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                                                                         <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                                                                     <?php } else if ($appointments['appointment_status'] == 'Approved') { ?>
-                                                                        <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                        <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#feedback_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-chat me-1"></i>Give Feedback</a>
                                                                     <?php } else { ?>
                                                                         <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                                                                     <?php } ?>
