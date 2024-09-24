@@ -84,7 +84,7 @@ if (mysqli_num_rows($user_sql) > 0) {
                     <div class="modal-body">
                         <div class="row">
                             <div class="mb-3 col-md-12">
-                                <input type="hidden" class="form-control" id="address" name="user_access_level" value="System Administrator" />
+                                <input type="hidden" class="form-control" id="address" name="user_access_level" value="<?php echo $user['user_access_level']; ?>" />
                                 <input type="hidden" class="form-control" id="address" name="user_id" value="<?php echo $user['user_id']; ?>" />
                                 <label for="firstName" class="form-labe">Full Names</label>
                                 <input
