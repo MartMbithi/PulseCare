@@ -132,7 +132,6 @@ require_once('../partials/head.php');
                                                                 </td>
                                                             </tr>
                                                     <?php
-                                                            include('../modals/services.php');
                                                             $cnt = $cnt + 1;
                                                         }
                                                     } ?>
@@ -158,6 +157,7 @@ require_once('../partials/head.php');
     <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+    <?php include('../modals/services.php'); ?>
 
     <?php require_once('../partials/scripts.php'); ?>
 </body>
