@@ -30,6 +30,7 @@
                 'csv', 'excel', 'pdf', 'print'
             ]
         });
+        $('.report_table td').css('white-space', 'initial');
     });
     /* Prevent double resubmission on browser refresh */
     if (window.history.replaceState) {
