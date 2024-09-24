@@ -82,12 +82,39 @@ if (isset($_POST['Add_Service'])) {
             "INSERT INTO medical_services (service_code, service_name, service_details, service_assigned_user_id)
         VALUES ('{$service_code}', '{$service_name}', '{$service_details}', '{$service_assigned_user_id}')"
         )) {
-            $msg = "Medical Service Added Successfully";
+            $success = "Medical Service Added Successfully";
         } else {
             $err = "Failed to Add Medical Service";
         }
     }
 }
- /* Update Service */
 
- /* Delete Service */
+/* Update Service */
+if (isset($_POST['Update_Service'])) {
+    $service_code = mysqli_real_escape_string($mysqli, $_POST['service_code']);
+    $service_name = mysqli_real_escape_string($mysqli, $_POST['service_name']);
+    $service_details = mysqli_real_escape_string($mysqli, $_POST['service_details']);
+    $service_assigned_user_id  = mysqli_real_escape_string($mysqli, $_POST['service_assigned_user_id']);
+    $service_id = mysqli_real_escape_string($mysqli, $_POST['service_id']);
+
+    /* Update */
+    if (mysqli_query(
+        $mysqli,
+        "UPDATE medical_services SET service_code = '{$service_code}', service_name = '{$service_name}', service_details = '{$service_details}', service_assigned_user_id = '{$service_assigned_user_id}'
+         WHERE service_id = '{$service_id}'"
+    )) {
+        $success = "Medical Service Updated Successfully";
+    } else {
+        $err = "Failed to Update Medical Service";
+    }
+}
+
+/* Delete Service */
+if (isset($_POST['Delete_Service'])) {
+    $service_id = mysqli_real_escape_string($mysqli, $_POST['service_id']);
+    if (mysqli_query($mysqli, "DELETE FROM medical_services WHERE service_id = '{$service_id}'")) {
+        $success = "Medical Service Deleted Successfully";
+    } else {
+        $err = "Failed to Delete Medical Service";
+    }
+}
