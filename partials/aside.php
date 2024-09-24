@@ -115,17 +115,17 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="users_administrator" class="menu-link" target="_blank">
+                    <a href="users_administrator" class="menu-link">
                         <div data-i18n="Basic">Administrators</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="users_doctors" class="menu-link" target="_blank">
+                    <a href="users_doctors" class="menu-link">
                         <div data-i18n="Basic">Doctors</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="users_patients" class="menu-link" target="_blank">
+                    <a href="users_patients" class="menu-link">
                         <div data-i18n="Basic">Patients</div>
                     </a>
                 </li>
