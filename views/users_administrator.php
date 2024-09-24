@@ -91,11 +91,14 @@ require_once('../partials/head.php');
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4">
                             <span class="text-muted fw-light">System Users /</span> Administrators
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_user" href="javascript:void(0);">Add New Administrator</a>
+                            </div>
                         </h4>
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <h5 class="card-header">Manage Medical Service</h5>
+                                    <h5 class="card-header text-center">Manage System Admins</h5>
                                     <hr class="my-0" />
                                     <div class="card-body">
                                         <div class="table-responsive text-nowrap">
