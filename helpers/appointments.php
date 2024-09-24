@@ -63,78 +63,49 @@
  *
  */
 
-/* Add Service */
-if (isset($_POST['Add_Service'])) {
-    $service_code = mysqli_real_escape_string($mysqli, $_POST['service_code']);
-    $service_name = mysqli_real_escape_string($mysqli, $_POST['service_name']);
-    $service_details = mysqli_real_escape_string($mysqli, $_POST['service_details']);
-    $service_assigned_user_id  = mysqli_real_escape_string($mysqli, $_POST['service_assigned_user_id']);
 
-    /* Prevent Duplications */
-    $duplicator_checker = "SELECT * FROM medical_services WHERE service_code = '{$service_code}' 
-    AND  service_name = '{$service_name}' AND service_assigned_user_id  = '{$service_assigned_user_id}'";
-    $res = mysqli_query($mysqli, $duplicator_checker);
-    if (mysqli_num_rows($res) > 0) {
-        $err = "Medical Service Already Exists";
-    } else {
-        if (mysqli_query(
-            $mysqli,
-            "INSERT INTO medical_services (service_code, service_name, service_details, service_assigned_user_id)
-        VALUES ('{$service_code}', '{$service_name}', '{$service_details}', '{$service_assigned_user_id}')"
-        )) {
-            $success = "Medical Service Added Successfully";
-        } else {
-            $err = "Failed to Add Medical Service";
-        }
-    }
-}
+/* Update Appointment Status */
+if (isset($_POST['Update_Appointments_Status'])) {
+    $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
+    $appointment_status = mysqli_real_escape_string($mysqli, $_POST['appointment_status']);
 
-/* Update Service */
-if (isset($_POST['Update_Service'])) {
-    $service_code = mysqli_real_escape_string($mysqli, $_POST['service_code']);
-    $service_name = mysqli_real_escape_string($mysqli, $_POST['service_name']);
-    $service_details = mysqli_real_escape_string($mysqli, $_POST['service_details']);
-    $service_assigned_user_id  = mysqli_real_escape_string($mysqli, $_POST['service_assigned_user_id']);
-    $service_id = mysqli_real_escape_string($mysqli, $_POST['service_id']);
-
-    /* Update */
     if (mysqli_query(
         $mysqli,
-        "UPDATE medical_services SET service_code = '{$service_code}', service_name = '{$service_name}', service_details = '{$service_details}', service_assigned_user_id = '{$service_assigned_user_id}'
-         WHERE service_id = '{$service_id}'"
+        "UPDATE appointments SET appointment_status = '{$appointment_status}' WHERE appointment_id = '{$appointment_id}'"
     )) {
-        $success = "Medical Service Updated Successfully";
+        $success = "Appointment Status Updated Successfully";
     } else {
-        $err = "Failed to Update Medical Service";
+        $err = "Failed to Update Appointment Status";
     }
 }
 
-/* Delete Service */
-if (isset($_POST['Delete_Service'])) {
-    $service_id = mysqli_real_escape_string($mysqli, $_POST['service_id']);
-    if (mysqli_query($mysqli, "DELETE FROM medical_services WHERE service_id = '{$service_id}'")) {
-        $success = "Medical Service Deleted Successfully";
-    } else {
-        $err = "Failed to Delete Medical Service";
-    }
-}
-
-
-/* Add Appointment */
-if (isset($_POST['Add_Appointment'])) {
-    $appointment_user_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_user_id']);
+/* Update Appointment */
+if (isset($_POST['Update_Appointment'])) {
+    $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
     $appointment_date = mysqli_real_escape_string($mysqli, $_POST['appointment_date']);
     $appointment_service_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_service_id']);
     $appointment_more_details = mysqli_real_escape_string($mysqli, $_POST['appointment_more_details']);
 
-    /* Add Appointment */
     if (mysqli_query(
         $mysqli,
-        "INSERT INTO appointments (appointment_user_id, appointment_date, appointment_service_id, appointment_more_details)
-        VALUES ('{$appointment_user_id}', '{$appointment_date}', '{$appointment_service_id}', '{$appointment_more_details}')"
+        "UPDATE appointments SET appointment_date = '{$appointment_date}', appointment_service_id = '{$appointment_service_id}',
+         appointment_more_details = '{$appointment_more_details}' WHERE appointment_id = '{$appointment_id}'"
     )) {
-        $success = "Appointment Added Successfully";
+        $success = "Appointment Updated Successfully";
     } else {
-        $err = "Failed to Add Appointment";
+        $err = "Failed to Update Appointment";
+    }
+}
+
+/* Delete Appointments */
+if (isset($_POST['Delete_Appointments'])) {
+    $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
+    if (mysqli_query(
+        $mysqli,
+        "DELETE FROM appointments WHERE appointment_id = '{$appointment_id}'"
+    )) {
+        $success = "Appointment Deleted Successfully";
+    } else {
+        $err = "Failed to Delete Appointment";
     }
 }
