@@ -96,7 +96,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="appointment_add" class="menu-link">
+                    <a href="medical_services_manage" class="menu-link">
                         <div data-i18n="Account">Add Appointment</div>
                     </a>
                 </li>
