@@ -62,4 +62,110 @@
  *   paid—if any. No drama, no big payouts, just pixels and code.
  *
  */
+
+$services = mysqli_query(
+    $mysqli,
+    "SELECT * FROM appointments a 
+    INNER JOIN medical_services s ON s.service_id = a.appointment_service_id 
+    INNER JOIN users u ON u.user_id = a.appointment_user_id"
+);
+if (mysqli_num_rows($services) > 0) {
+    while ($appointments = mysqli_fetch_array($services)) {
 ?>
+        <div class="modal fade" id="edit_<?php echo $appointments['appointment_id']; ?>" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="backDropModalTitle">Update Appointment</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-12">
+                                <label for="lastName" class="form-labe">Date</label>
+                                <input class="form-control" type="date" name="appointment_date" value="<?php echo $appointments['appointment_date']; ?>" id="lastName" />
+                                <input class="form-control" type="hidden" name="appointment_id" value="<?php echo $appointments['appointment_id']; ?>" id="lastName" />
+                            </div>
+
+                            <div class="mb-3 col-md-12">
+                                <label for="lastName" class="form-labe">Appointment details</label>
+                                <textarea class="form-control" rows="5" type="text" name="appointment_more_details" id="lastName"><?php echo $appointments['appointment_more_details']; ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" name="Update_Appointment" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Delete -->
+        <div class="modal fade" id="delete_<?php echo $appointments['appointment_id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST">
+                        <div class="modal-body text-center text-danger">
+                            <img src='../public/img/icons/bin-file.gif' height="80px"><br>
+                            <h4>Heads Up! <br>
+                                You are about to delete this medical appointment, proceed and delete?
+                            </h4>
+                            <input class="form-control" type="hidden" name="appointment_id" value="<?php echo $appointments['appointment_id']; ?>" id="lastName" />
+                            <button type="button" class="text-center btn btn-success" data-bs-dismiss="modal">No, Dismiss </button>
+                            <input type="submit" name="Delete_Appointments" value="Yes, Delete" class="text-center btn btn-danger">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cancel Appointment -->
+        <div class="modal fade" id="cancel_<?php echo $appointments['appointment_id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST">
+                        <div class="modal-body text-center text-danger">
+                            <img src='../public/img/icons/cancel.png' height="80px"><br>
+                            <h4>Heads Up! <br>
+                                You are about to cancel this medical appointment, proceed and delete?
+                            </h4>
+                            <input class="form-control" type="hidden" name="appointment_id" value="<?php echo $appointments['appointment_id']; ?>" id="lastName" />
+                            <input class="form-control" type="hidden" name="appointment_status" value="Cancelled" id="lastName" />
+                            <button type="button" class="text-center btn btn-success" data-bs-dismiss="modal">No, Dismiss </button>
+                            <input type="submit" name="Update_Appointments_Status" value="Yes, Cancel" class="text-center btn btn-danger">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approve Appointment -->
+        <div class="modal fade" id="approve_<?php echo $appointments['appointment_id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST">
+                        <div class="modal-body text-center text-danger">
+                            <img src='../public/img/icons/approve.png' height="80px"><br>
+                            <h4>Heads Up! <br>
+                                You are about to approve this medical appointment, proceed and delete?
+                            </h4>
+                            <input class="form-control" type="hidden" name="appointment_id" value="<?php echo $appointments['appointment_id']; ?>" id="lastName" />
+                            <input class="form-control" type="hidden" name="appointment_status" value="Approved" id="lastName" />
+                            <button type="button" class="text-center btn btn-danger" data-bs-dismiss="modal">No, Dismiss </button>
+                            <input type="submit" name="Update_Appointments_Status" value="Yes, Approve" class="text-center btn btn-success">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<?php }
+} ?>

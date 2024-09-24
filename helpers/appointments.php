@@ -83,12 +83,11 @@ if (isset($_POST['Update_Appointments_Status'])) {
 if (isset($_POST['Update_Appointment'])) {
     $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
     $appointment_date = mysqli_real_escape_string($mysqli, $_POST['appointment_date']);
-    $appointment_service_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_service_id']);
     $appointment_more_details = mysqli_real_escape_string($mysqli, $_POST['appointment_more_details']);
 
     if (mysqli_query(
         $mysqli,
-        "UPDATE appointments SET appointment_date = '{$appointment_date}', appointment_service_id = '{$appointment_service_id}',
+        "UPDATE appointments SET appointment_date = '{$appointment_date}',
          appointment_more_details = '{$appointment_more_details}' WHERE appointment_id = '{$appointment_id}'"
     )) {
         $success = "Appointment Updated Successfully";
