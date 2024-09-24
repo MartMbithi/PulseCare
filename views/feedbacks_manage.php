@@ -167,7 +167,7 @@ require_once('../partials/head.php');
     <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-    <?php include('../modals/services.php'); ?>
+    <?php include('../modals/feedbacks.php'); ?>
 
     <?php require_once('../partials/scripts.php'); ?>
 </body>
