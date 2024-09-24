@@ -126,9 +126,9 @@ require_once('../partials/head.php');
                                                                 <td><?php echo $service['service_name']; ?></td>
                                                                 <td><?php echo $service['user_names']; ?></td>
                                                                 <td>
-                                                                    <a class="badge bg-label-primary" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                                    <a class="badge bg-label-danger" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                                                    <a class="badge bg-label-success" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i> Make Appointment</a>
+                                                                    <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $service['service_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                    <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $service['service_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                    <a class="badge bg-label-success" data-bs-toggle="modal" data-bs-target="#reserve_<?php echo $service['service_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i> Make Appointment</a>
                                                                 </td>
                                                             </tr>
                                                     <?php
