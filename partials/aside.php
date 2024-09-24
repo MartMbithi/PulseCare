@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="medical_services_add" class="menu-link">
+                    <a href="medical_services_manage" class="menu-link">
                         <div data-i18n="Without navbar">Manage Services</div>
                     </a>
                 </li>

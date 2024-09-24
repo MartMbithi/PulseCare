@@ -90,52 +90,56 @@ require_once('../partials/head.php');
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Medical Services /</span> Add
+                            <span class="text-muted fw-light">Medical Services /</span> Manage
                         </h4>
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <h5 class="card-header text-center">Register New Medical Service</h5>
+                                    <h5 class="card-header text-center">ManageMedical Service</h5>
                                     <hr class="my-0" />
                                     <div class="card-body">
-                                        <form method="POST">
-                                            <div class="row">
-                                                <div class="mb-3 col-md-4">
-                                                    <label for="lastName" class="form-labe">Service Code</label>
-                                                    <input class="form-control" type="text" name="service_code"  id="lastName" />
-                                                </div>
-                                                <div class="mb-3 col-md-4">
-                                                    <label for="lastName" class="form-labe">Service Name</label>
-                                                    <input class="form-control" type="text" name="service_name" id="lastName" />
-                                                </div>
-                                                <div class="mb-3 col-md-4">
-                                                    <label for="currency" class="form-labe">Doctor Assigned</label>
-                                                    <select id="currency" name="service_assigned_user_id" class="select2 form-select">
-                                                        <option value="">Select Doctor</option>
-                                                        <?php
-                                                        $users_sql = mysqli_query(
-                                                            $mysqli,
-                                                            "SELECT * FROM users WHERE user_access_level = 'Doctor'"
-                                                        );
-                                                        if (mysqli_num_rows($users_sql) > 0) {
-                                                            while ($user_detail = mysqli_fetch_array($users_sql)) {
-                                                        ?>
-                                                                <option value="<?php echo $user_detail['user_id']; ?>"><?php echo $user_detail['user_names']; ?></option>
-                                                        <?php }
-                                                        } ?>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3 col-md-12">
-                                                    <label for="lastName" class="form-labe">Service details</label>
-                                                    <textarea class="form-control" type="text" name="service_details" id="lastName"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="submit" name="Add_Service" class="btn btn-primary me-2">Save</button>
-                                            </div>
-                                        </form>
+                                        <div class="table-responsive text-nowrap">
+                                            <table class="table data_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Code</th>
+                                                        <th>Name</th>
+                                                        <th>Assigned Doctor</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-border-bottom-0">
+                                                    <?php
+                                                    $services = mysqli_query(
+                                                        $mysqli,
+                                                        "SELECT * FROM medical_services s
+                                                        INNER JOIN users u ON u.user_id = s.service_assigned_user_id "
+                                                    );
+                                                    $cnt = 1;
+                                                    if (mysqli_num_rows($services) > 0) {
+                                                        while ($service = mysqli_fetch_array($services)) {
+                                                    ?>
+                                                            <tr>
+                                                                <td><?php echo $cnt; ?></td>
+                                                                <td><?php echo $service['service_code']; ?></td>
+                                                                <td><?php echo $service['service_name']; ?></td>
+                                                                <td><?php echo $service['user_names']; ?></td>
+                                                                <td>
+                                                                    <a class="badge bg-label-primary" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                    <a class="badge bg-label-danger" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                    <a class="badge bg-label-success" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i> Make Appointment</a>
+                                                                </td>
+                                                            </tr>
+                                                    <?php
+                                                            include('../modals/services.php');
+                                                            $cnt = $cnt + 1;
+                                                        }
+                                                    } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <!-- /Account -->
                                 </div>
                             </div>
                         </div>
