@@ -63,68 +63,32 @@
  *
  */
 
-
-/* Update Appointment Status */
-if (isset($_POST['Update_Appointments_Status'])) {
-    $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
-    $appointment_status = mysqli_real_escape_string($mysqli, $_POST['appointment_status']);
-
-    if (mysqli_query(
-        $mysqli,
-        "UPDATE appointments SET appointment_status = '{$appointment_status}' WHERE appointment_id = '{$appointment_id}'"
-    )) {
-        $success = "Appointment Status Updated Successfully";
-    } else {
-        $err = "Failed to Update Appointment Status";
-    }
-}
-
-/* Update Appointment */
-if (isset($_POST['Update_Appointment'])) {
-    $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
-    $appointment_date = mysqli_real_escape_string($mysqli, $_POST['appointment_date']);
-    $appointment_service_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_service_id']);
-    $appointment_more_details = mysqli_real_escape_string($mysqli, $_POST['appointment_more_details']);
-
-    if (mysqli_query(
-        $mysqli,
-        "UPDATE appointments SET appointment_date = '{$appointment_date}', appointment_service_id = '{$appointment_service_id}',
-         appointment_more_details = '{$appointment_more_details}' WHERE appointment_id = '{$appointment_id}'"
-    )) {
-        $success = "Appointment Updated Successfully";
-    } else {
-        $err = "Failed to Update Appointment";
-    }
-}
-
-/* Delete Appointments */
-if (isset($_POST['Delete_Appointments'])) {
-    $appointment_id  = mysqli_real_escape_string($mysqli, $_POST['appointment_id']);
-    if (mysqli_query(
-        $mysqli,
-        "DELETE FROM appointments WHERE appointment_id = '{$appointment_id}'"
-    )) {
-        $success = "Appointment Deleted Successfully";
-    } else {
-        $err = "Failed to Delete Appointment";
-    }
-}
-
-
-/* Add Feedbacks */
-if (isset($_POST['Add_Feedbacks'])) {
-    $feedback_user_id  = mysqli_real_escape_string($mysqli, $_POST['feedback_user_id']);
-    $feedback_service_id  = mysqli_real_escape_string($mysqli, $_POST['feedback_service_id']);
+/* Update Feedback */
+if (isset($_POST['Update_Feedback'])) {
+    $feedback_id  = mysqli_real_escape_string($mysqli, $_POST['feedback_id']);
     $feedback_title = mysqli_real_escape_string($mysqli, $_POST['feedback_title']);
     $feedback_details = mysqli_real_escape_string($mysqli, $_POST['feedback_details']);
 
     if (mysqli_query(
         $mysqli,
-        "INSERT INTO feedbacks (feedback_user_id, feedback_service_id, feedback_title, feedback_details)
-        VALUES ('{$feedback_user_id}', '{$feedback_service_id}', '{$feedback_title}', '{$feedback_details}')"
+        "UPDATE feedbacks SET feedback_title = '{$feedback_title}', feedback_details = '{$feedback_details}' WHERE feedback_id = '{$feedback_details}'"
     )) {
-        $success = "Feedback Added Successfully";
+        $success = "Feedback updated";
     } else {
-        $err = "Failed to Add Feedback";
+        $err = "Failed, please try again";
+    }
+}
+
+/* Delete Feedback */
+if (isset($_POST['Delete_Feeback'])) {
+    $feedback_id = mysqli_real_escape_string($mysqli, $_POST['feedback_id']);
+
+    if (mysqli_query(
+        $mysqli,
+        "DELETE FROM feedbacks WHERE feedback_id = '{$feedback_id}'"
+    )) {
+        $success = "Feedback deleted";
+    } else {
+        $err = "Failed, please try again";
     }
 }
