@@ -115,7 +115,7 @@ require_once('../partials/head.php');
                                                     $services = mysqli_query(
                                                         $mysqli,
                                                         "SELECT * FROM appointments a 
-                                                        INNER JOIN medical_services s.service_id = a.appointment_service_id 
+                                                        INNER JOIN medical_services s ON s.service_id = a.appointment_service_id 
                                                         INNER JOIN users u ON u.user_id = a.appointment_user_id"
                                                     );
                                                     $cnt = 1;
@@ -132,7 +132,7 @@ require_once('../partials/head.php');
                                                                     <?php
                                                                     if ($appointments['appointment_status'] == 'Pending') { ?>
                                                                         <a class="badge bg-label-success" data-bs-toggle="modal" data-bs-target="#approve_<?php echo $service['appointment_id ']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i>Approve</a>
-                                                                        <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $service['appointment_id ']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-times me-1"></i>Cancel</a>
+                                                                        <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $service['appointment_id ']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-x me-1"></i>Cancel</a>
                                                                         <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $service['appointment_id ']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                                                                         <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $service['appointment_id ']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                                                                     <?php } else if ($appointments['appointment_status'] == 'Approved') { ?>
