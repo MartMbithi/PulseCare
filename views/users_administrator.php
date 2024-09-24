@@ -159,6 +159,61 @@ require_once('../partials/head.php');
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    <!-- Add Modal -->
+    <div class="modal fade" id="add_user" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog">
+            <form class="modal-content" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="backDropModalTitle">Register New Administrator</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label for="firstName" class="form-labe">Full Names</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="user_names"
+                                autofocus />
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="email" class="form-labe">E-mail</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="email"
+                                name="user_email" />
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="organization" class="form-labe">Phone number</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="user_phone" />
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="address" class="form-labe">Password <small class="text-danger">Users will be prompted to change this password on login</small></label>
+                            <input type="text" readonly value="Staff@1234" class="form-control" id="address" name="user_password" />
+                            <input type="hidden" value="System Administrator" class="form-control" id="address" name="user_designation" />
+                            <input type="hidden" class="form-control" id="address" name="user_access_level" value="System Administrator" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" name="Register_User" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Modal -->
     <!-- / Layout wrapper -->
     <?php include('../modals/users.php'); ?>
 
