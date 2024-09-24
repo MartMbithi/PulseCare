@@ -70,6 +70,8 @@ $services = mysqli_query(
 if (mysqli_num_rows($services) > 0) {
     while ($service = mysqli_fetch_array($services)) {
 ?>
+
+        <!-- Update Services -->
         <div class="modal fade" id="edit_<?php echo $service['service_id']; ?>" data-bs-backdrop="static" tabindex="-1">
             <div class="modal-dialog">
                 <form class="modal-content" method="POST">
@@ -126,5 +128,77 @@ if (mysqli_num_rows($services) > 0) {
             </div>
         </div>
 
+        <!-- Make Appointment -->
+        <div class="modal fade" id="reserve_<?php echo $service['service_id']; ?>" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="backDropModalTitle">Make an Appointment</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="lastName" class="form-labe">Date</label>
+                                <input class="form-control" type="date" name="appointment_date" id="lastName" />
+                                <input class="form-control" type="hidden" name="appointment_service_id" value="<?php echo $service['service_id']; ?>" id="lastName" />
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="currency" class="form-labe">Patient</label>
+                                <select id="currency" required name="appointment_user_id" class="select2 form-select">
+                                    <option value="">Select patient</option>
+                                    <?php
+                                    $users_sql = mysqli_query(
+                                        $mysqli,
+                                        "SELECT * FROM users 
+                                        WHERE user_access_level = 'Patient'"
+                                    );
+                                    if (mysqli_num_rows($users_sql) > 0) {
+                                        while ($user_detail = mysqli_fetch_array($users_sql)) {
+                                    ?>
+                                            <option value="<?php echo $user_detail['user_id']; ?>"><?php echo $user_detail['user_names']; ?></option>
+                                    <?php }
+                                    } ?>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-12">
+                                <label for="lastName" class="form-labe">Appointment details</label>
+                                <textarea class="form-control" rows="5" type="text" name="appointment_more_details" id="lastName"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" name="Add_Appointment" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Delete -->
+        <div class="modal fade" id="delete_<?php echo $service['service_id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST">
+                        <div class="modal-body text-center text-danger">
+                            <img src='../public/img/icons/bin-file.gif' height="80px"><br>
+                            <h4>Heads Up! <br>
+                                You are about to delete this medical service, proceed and delete?
+                            </h4>
+                            <input class="form-control" type="hidden" name="service_id" value="<?php echo $service['service_id']; ?>" id="lastName" />
+                            <button type="button" class="text-center btn btn-success" data-bs-dismiss="modal">No, Dismiss </button>
+                            <input type="submit" name="Delete_Service" value="Yes, Delete" class="text-center btn btn-danger">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 <?php }
 } ?>
