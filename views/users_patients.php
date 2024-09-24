@@ -98,7 +98,7 @@ require_once('../partials/head.php');
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <h5 class="card-header text-center">Manage Doctors</h5>
+                                    <h5 class="card-header text-center">Manage Patient</h5>
                                     <hr class="my-0" />
                                     <div class="card-body">
                                         <div class="table-responsive text-nowrap">
