@@ -167,5 +167,42 @@ if (mysqli_num_rows($services) > 0) {
             </div>
         </div>
 
+        <!-- Give Feedback -->
+        <div class="modal fade" id="feedback_<?php echo $appointments['appointment_id']; ?>" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="backDropModalTitle">Give Feedback</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="mb-3 col-md-12">
+                                <label for="lastName" class="form-labe">Title</label>
+                                <input class="form-control" type="text" name="feedback_title"  id="lastName" />
+                                <input class="form-control" type="hidden" name="feedback_user_id" value="<?php echo $appointments['appointment_user_id']; ?>" id="lastName" />
+                                <input class="form-control" type="hidden" name="feedback_service_id" value="<?php echo $appointments['appointment_service_id']; ?>" id="lastName" />
+                            </div>
+
+                            <div class="mb-3 col-md-12">
+                                <label for="lastName" class="form-labe">Feedback details</label>
+                                <textarea class="form-control" rows="5" type="text" name="feedback_details" id="lastName"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" name="Add_Feedbacks" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 <?php }
 } ?>
