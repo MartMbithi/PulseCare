@@ -115,103 +115,203 @@ require_once('../partials/head.php');
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 order-1">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12 col-6 mb-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="card-title d-flex align-items-start justify-content-between">
-                                                    <div class="avatar flex-shrink-0">
-                                                        <img
-                                                            src="../public/img/icons/unicons/healthcare.png"
-                                                            alt="Medical service"
-                                                            class="rounded" />
+                            <?php if ($user_access_level != 'Patient') { ?>
+                                <div class="col-lg-4 col-md-4 order-1">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12 col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img
+                                                                src="../public/img/icons/unicons/healthcare.png"
+                                                                alt="Medical service"
+                                                                class="rounded" />
+                                                        </div>
                                                     </div>
+                                                    <span class="fw-semibold d-block mb-1">Medical Services</span>
+                                                    <h3 class="card-title mb-2"><?php echo $medical_services; ?></h3>
                                                 </div>
-                                                <span class="fw-semibold d-block mb-1">Medical Services</span>
-                                                <h3 class="card-title mb-2"><?php echo $medical_services; ?></h3>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-6 mb-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="card-title d-flex align-items-start justify-content-between">
-                                                    <div class="avatar flex-shrink-0">
-                                                        <img
-                                                            src="../public/img/icons/unicons/doctor.png"
-                                                            alt="Doc"
-                                                            class="rounded" />
+                                        <div class="col-lg-6 col-md-12 col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img
+                                                                src="../public/img/icons/unicons/doctor.png"
+                                                                alt="Doc"
+                                                                class="rounded" />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <span>Doctors</span>
-                                                <h3 class="card-title text-nowrap mb-1"><?php echo $doctors; ?></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Total Revenue -->
-                            <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
-                                <div class="card">
-                                    <div class="row row-bordered g-0">
-                                        <div class="col-md-12">
-                                            <h5 class="card-header m-0 me-2 pb-3">Appointments Calendar For <?php echo date('M, Y'); ?></h5>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <?php include('../functions/calendar.php'); ?>
-                                                    </div>
+                                                    <span>Doctors</span>
+                                                    <h3 class="card-title text-nowrap mb-1"><?php echo $doctors; ?></h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--/ Total Revenue -->
-                            <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
-                                <div class="row">
-                                    <div class="col-6 mb-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="card-title d-flex align-items-start justify-content-between">
-                                                    <div class="avatar flex-shrink-0">
-                                                        <img src="../public/img/icons/unicons/patient.png" alt="Patient" class="rounded" />
+                                <!-- Total Revenue -->
+                                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                                    <div class="card">
+                                        <div class="row row-bordered g-0">
+                                            <div class="col-md-12">
+                                                <h5 class="card-header m-0 me-2 pb-3">Appointments Calendar For <?php echo date('M, Y'); ?></h5>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <?php include('../functions/calendar.php'); ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <span class="d-block mb-1">Patients</span>
-                                                <h3 class="card-title text-nowrap mb-2"><?php echo $patients; ?></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 mb-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="card-title d-flex align-items-start justify-content-between">
-                                                    <div class="avatar flex-shrink-0">
-                                                        <img src="../public/img/icons/unicons/welfare.png" alt="Appointment" class="rounded" />
-                                                    </div>
-                                                </div>
-                                                <span class="fw-semibold d-block mb-1">Feedbacks</span>
-                                                <h3 class="card-title mb-2"><?php echo $feedbacks; ?></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mb-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="card-title d-flex align-items-start justify-content-between">
-                                                    <div class="avatar flex-shrink-0">
-                                                        <img src="../public/img/icons/unicons/medical-appointment.png" alt="Appointment" class="rounded" />
-                                                    </div>
-                                                </div>
-                                                <span class="fw-semibold d-block mb-1">Appointments</span>
-                                                <h3 class="card-title mb-2"><?php echo $all_appointments; ?></h3>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!--/ Total Revenue -->
+                                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+                                    <div class="row">
+                                        <div class="col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img src="../public/img/icons/unicons/patient.png" alt="Patient" class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="d-block mb-1">Patients</span>
+                                                    <h3 class="card-title text-nowrap mb-2"><?php echo $patients; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img src="../public/img/icons/unicons/welfare.png" alt="Appointment" class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="fw-semibold d-block mb-1">Feedbacks</span>
+                                                    <h3 class="card-title mb-2"><?php echo $feedbacks; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img src="../public/img/icons/unicons/medical-appointment.png" alt="Appointment" class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="fw-semibold d-block mb-1">Appointments</span>
+                                                    <h3 class="card-title mb-2"><?php echo $all_appointments; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } else { ?>
+                                <div class="col-lg-4 col-md-4 order-1">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12 col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img
+                                                                src="../public/img/icons/unicons/healthcare.png"
+                                                                alt="Medical service"
+                                                                class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="fw-semibold d-block mb-1">Medical Services</span>
+                                                    <h3 class="card-title mb-2"><?php echo $medical_services; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img
+                                                                src="../public/img/icons/unicons/doctor.png"
+                                                                alt="Doc"
+                                                                class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span>My Appointments</span>
+                                                    <h3 class="card-title text-nowrap mb-1"><?php echo $my_appointments; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Total Revenue -->
+                                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                                    <div class="card">
+                                        <div class="row row-bordered g-0">
+                                            <div class="col-md-12">
+                                                <h5 class="card-header m-0 me-2 pb-3">My Appointments Calendar For <?php echo date('M, Y'); ?></h5>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <?php include('../functions/my_calendar.php'); ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ Total Revenue -->
+                                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+                                    <div class="row">
+                                        <div class="col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img src="../public/img/icons/unicons/patient.png" alt="Patient" class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="d-block mb-1">Approved Appointments</span>
+                                                    <h3 class="card-title text-nowrap mb-2"><?php echo $approved_appointments; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img src="../public/img/icons/unicons/welfare.png" alt="Appointment" class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="fw-semibold d-block mb-1">Cancelled Appointments</span>
+                                                    <h3 class="card-title mb-2"><?php echo $cancelled_appointments; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                                        <div class="avatar flex-shrink-0">
+                                                            <img src="../public/img/icons/unicons/medical-appointment.png" alt="Appointment" class="rounded" />
+                                                        </div>
+                                                    </div>
+                                                    <span class="fw-semibold d-block mb-1">My Feedbacks</span>
+                                                    <h3 class="card-title mb-2"><?php echo $feedbacks; ?></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- / Content -->
