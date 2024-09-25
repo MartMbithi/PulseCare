@@ -68,7 +68,7 @@ function getAppointmentsPerDay($year, $month, $mysqli)
     $appointments = [];
 
     // Use STR_TO_DATE to convert `appointment_date` from VARCHAR to DATE
-    $query = "SELECT DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d')) AS day, 
+    $query = "SELECT appointment_user_id, DAY(STR_TO_DATE(appointment_date, '%Y-%m-%d')) AS day, 
                COUNT(*) AS total_appointments 
                FROM appointments  
                WHERE YEAR(STR_TO_DATE(appointment_date, '%Y-%m-%d')) = $year 

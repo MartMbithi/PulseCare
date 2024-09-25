@@ -84,18 +84,34 @@ if (mysqli_num_rows($users_sql) > 0) {
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                 <!-- Search -->
-                <form action="users_patients">
-                    <div class="navbar-nav align-items-center">
-                        <div class="nav-item d-flex align-items-center">
-                            <i class="bx bx-search fs-4 lh-0"></i>
-                            <input
-                                type="text"
-                                class="form-control border-0 shadow-none"
-                                placeholder="Enter  Patient Name"
-                                aria-label="Search..." />
+                <?php if ($_SESSION['user_access_level'] != 'Patient') { ?>
+                    <form action="users_patients">
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                <i class="bx bx-search fs-4 lh-0"></i>
+                                <input
+                                    type="text"
+                                    class="form-control border-0 shadow-none"
+                                    placeholder="Enter  Patient Name"
+                                    aria-label="Search..." />
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                <?php } else { ?>
+                    <form action="medical_services_manage">
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                <i class="bx bx-search fs-4 lh-0"></i>
+                                <input
+                                    type="text"
+                                    class="form-control border-0 shadow-none"
+                                    placeholder="Medical Service Name"
+                                    aria-label="Search..." />
+                            </div>
+                        </div>
+                    </form>
+                <?php } ?>
+
 
                 <!-- /Search -->
 

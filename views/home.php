@@ -238,7 +238,7 @@ require_once('../partials/head.php');
                                                     <div class="card-title d-flex align-items-start justify-content-between">
                                                         <div class="avatar flex-shrink-0">
                                                             <img
-                                                                src="../public/img/icons/unicons/doctor.png"
+                                                                src="../public/img/icons/unicons/medical-appointment.png"
                                                                 alt="Doc"
                                                                 class="rounded" />
                                                         </div>
@@ -275,7 +275,7 @@ require_once('../partials/head.php');
                                                 <div class="card-body">
                                                     <div class="card-title d-flex align-items-start justify-content-between">
                                                         <div class="avatar flex-shrink-0">
-                                                            <img src="../public/img/icons/unicons/patient.png" alt="Patient" class="rounded" />
+                                                            <img src="../public/img/icons/unicons/doctor.png" alt="Patient" class="rounded" />
                                                         </div>
                                                     </div>
                                                     <span class="d-block mb-1">Approved Appointments</span>
@@ -288,7 +288,7 @@ require_once('../partials/head.php');
                                                 <div class="card-body">
                                                     <div class="card-title d-flex align-items-start justify-content-between">
                                                         <div class="avatar flex-shrink-0">
-                                                            <img src="../public/img/icons/unicons/welfare.png" alt="Appointment" class="rounded" />
+                                                            <img src="../public/img/icons/unicons/patient.png" alt="Appointment" class="rounded" />
                                                         </div>
                                                     </div>
                                                     <span class="fw-semibold d-block mb-1">Cancelled Appointments</span>
@@ -301,7 +301,7 @@ require_once('../partials/head.php');
                                                 <div class="card-body">
                                                     <div class="card-title d-flex align-items-start justify-content-between">
                                                         <div class="avatar flex-shrink-0">
-                                                            <img src="../public/img/icons/unicons/medical-appointment.png" alt="Appointment" class="rounded" />
+                                                            <img src="../public/img/icons/unicons/welfare.png" alt="Appointment" class="rounded" />
                                                         </div>
                                                     </div>
                                                     <span class="fw-semibold d-block mb-1">My Feedbacks</span>
