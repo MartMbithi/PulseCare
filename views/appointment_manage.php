@@ -84,87 +84,155 @@ require_once('../partials/head.php');
                 <!-- Navbar -->
                 <?php require_once('../partials/navbar.php'); ?>
                 <!-- / Navbar -->
-
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Medical Appointments /</span> Manage
-                        </h4>
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card mb-4">
-                                    <h5 class="card-header text-center">Manage Medical Appointments</h5>
-                                    <hr class="my-0" />
-                                    <div class="card-body">
-                                        <div class="table-responsive text-nowrap">
-                                            <table class="table data_table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Medical Service</th>
-                                                        <th>Patient Name</th>
-                                                        <th>Appointment Date</th>
-                                                        <th>Status</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-border-bottom-0">
-                                                    <?php
-                                                    $services = mysqli_query(
-                                                        $mysqli,
-                                                        "SELECT * FROM appointments a 
+                <?php if ($_SESSION['user_access_level'] != 'Patient') { ?>
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper">
+                        <!-- Content -->
+                        <div class="container-xxl flex-grow-1 container-p-y">
+                            <h4 class="fw-bold py-3 mb-4">
+                                <span class="text-muted fw-light">Medical Appointments /</span> Manage
+                            </h4>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card mb-4">
+                                        <h5 class="card-header text-center">Manage Medical Appointments</h5>
+                                        <hr class="my-0" />
+                                        <div class="card-body">
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table data_table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Medical Service</th>
+                                                            <th>Patient Name</th>
+                                                            <th>Appointment Date</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-border-bottom-0">
+                                                        <?php
+                                                        $services = mysqli_query(
+                                                            $mysqli,
+                                                            "SELECT * FROM appointments a 
                                                         INNER JOIN medical_services s ON s.service_id = a.appointment_service_id 
                                                         INNER JOIN users u ON u.user_id = a.appointment_user_id"
-                                                    );
-                                                    $cnt = 1;
-                                                    if (mysqli_num_rows($services) > 0) {
-                                                        while ($appointments = mysqli_fetch_array($services)) {
-                                                    ?>
-                                                            <tr>
-                                                                <td><?php echo $cnt; ?></td>
-                                                                <td><?php echo $appointments['service_name']; ?></td>
-                                                                <td><?php echo $appointments['user_names']; ?></td>
-                                                                <td><?php echo $appointments['appointment_date']; ?></td>
-                                                                <th><?php echo $appointments['appointment_status']; ?></th>
-                                                                <td>
-                                                                    <?php
-                                                                    if ($user_access_level == 'System Administrator') {
-                                                                        if ($appointments['appointment_status'] == 'Pending') { ?>
-                                                                            <a class="badge bg-label-success" data-bs-toggle="modal" data-bs-target="#approve_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i>Approve</a>
-                                                                            <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-x me-1"></i>Cancel</a>
-                                                                            <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                                            <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                                                        <?php } else if ($appointments['appointment_status'] == 'Approved') { ?>
-                                                                            <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#feedback_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-chat me-1"></i>Give Feedback</a>
-                                                                        <?php } else { ?>
-                                                                            <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                        );
+                                                        $cnt = 1;
+                                                        if (mysqli_num_rows($services) > 0) {
+                                                            while ($appointments = mysqli_fetch_array($services)) {
+                                                        ?>
+                                                                <tr>
+                                                                    <td><?php echo $cnt; ?></td>
+                                                                    <td><?php echo $appointments['service_name']; ?></td>
+                                                                    <td><?php echo $appointments['user_names']; ?></td>
+                                                                    <td><?php echo $appointments['appointment_date']; ?></td>
+                                                                    <th><?php echo $appointments['appointment_status']; ?></th>
+                                                                    <td>
+                                                                        <?php
+                                                                        if ($user_access_level == 'System Administrator') {
+                                                                            if ($appointments['appointment_status'] == 'Pending') { ?>
+                                                                                <a class="badge bg-label-success" data-bs-toggle="modal" data-bs-target="#approve_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i>Approve</a>
+                                                                                <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-x me-1"></i>Cancel</a>
+                                                                                <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                                <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                            <?php } else if ($appointments['appointment_status'] == 'Approved') { ?>
+                                                                                <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#feedback_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-chat me-1"></i>Give Feedback</a>
+                                                                            <?php } else { ?>
+                                                                                <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                            <?php }
+                                                                        } else {
+                                                                            if ($appointments['appointment_status'] == 'Pending') { ?>
+                                                                                <a class="badge bg-label-success" data-bs-toggle="modal" data-bs-target="#approve_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i>Approve</a>
+                                                                                <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-x me-1"></i>Cancel</a>
+                                                                                <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                            <?php } else { ?>
+                                                                                <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                                                                         <?php }
-                                                                    } else {
-                                                                        if ($appointments['appointment_status'] == 'Pending') { ?>
-                                                                            <a class="badge bg-label-success" data-bs-toggle="modal" data-bs-target="#approve_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-check me-1"></i>Approve</a>
-                                                                            <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-x me-1"></i>Cancel</a>
-                                                                            <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                                        <?php } else { ?>
-                                                                            <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                                                    <?php }
-                                                                    } ?>
-                                                                </td>
-                                                            </tr>
-                                                    <?php
-                                                            $cnt = $cnt + 1;
-                                                        }
-                                                    } ?>
-                                                </tbody>
-                                            </table>
+                                                                        } ?>
+                                                                    </td>
+                                                                </tr>
+                                                        <?php
+                                                                $cnt = $cnt + 1;
+                                                            }
+                                                        } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper">
+                        <!-- Content -->
+                        <div class="container-xxl flex-grow-1 container-p-y">
+                            <h4 class="fw-bold py-3 mb-4">
+                                <span class="text-muted fw-light">Medical Appointments /</span> Manage
+                            </h4>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card mb-4">
+                                        <h5 class="card-header text-center">Manage My Medical Appointments</h5>
+                                        <hr class="my-0" />
+                                        <div class="card-body">
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table data_table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Medical Service</th>
+                                                            <th>Patient Name</th>
+                                                            <th>Appointment Date</th>
+                                                            <th>Status</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-border-bottom-0">
+                                                        <?php
+                                                        $services = mysqli_query(
+                                                            $mysqli,
+                                                            "SELECT * FROM appointments a 
+                                                        INNER JOIN medical_services s ON s.service_id = a.appointment_service_id 
+                                                        INNER JOIN users u ON u.user_id = a.appointment_user_id
+                                                        WHERE u.user_id = '{$user_id}'"
+                                                        );
+                                                        $cnt = 1;
+                                                        if (mysqli_num_rows($services) > 0) {
+                                                            while ($appointments = mysqli_fetch_array($services)) {
+                                                        ?>
+                                                                <tr>
+                                                                    <td><?php echo $cnt; ?></td>
+                                                                    <td><?php echo $appointments['service_name']; ?></td>
+                                                                    <td><?php echo $appointments['user_names']; ?></td>
+                                                                    <td><?php echo $appointments['appointment_date']; ?></td>
+                                                                    <th><?php echo $appointments['appointment_status']; ?></th>
+                                                                    <td>
+                                                                        <?php
+                                                                        if ($appointments['appointment_status'] == 'Pending') { ?>
+                                                                            <a class="badge bg-label-warning" data-bs-toggle="modal" data-bs-target="#cancel_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-calendar-x me-1"></i>Cancel</a>
+                                                                            <a class="badge bg-label-primary" data-bs-toggle="modal" data-bs-target="#edit_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                                            <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $appointments['appointment_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                        <?php } ?>
+                                                                    </td>
+                                                                </tr>
+                                                        <?php
+                                                                $cnt = $cnt + 1;
+                                                            }
+                                                        } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
                 <!-- Footer -->
                 <?php require_once('../partials/footer.php'); ?>
                 <!-- / Footer -->
