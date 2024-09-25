@@ -5,8 +5,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            PulseCare, Made With ❤️ By
-            <a href="https://devlan.co.ke" target="_blank" class="footer-link fw-bolder">DevLan Solutions LTD</a>
+            PulseCare - Improving patient experience through realtime feedbacks 
         </div>
     </div>
 </footer>

@@ -84,76 +84,146 @@ require_once('../partials/head.php');
                 <!-- Navbar -->
                 <?php require_once('../partials/navbar.php'); ?>
                 <!-- / Navbar -->
-
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Feedbacks /</span> Manage
-                        </h4>
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card mb-4">
-                                    <h5 class="card-header text-center">Manage Medical Services Feedbacks</h5>
-                                    <hr class="my-0" />
-                                    <div class="card-body">
-                                        <div class="table-responsive text-nowrap">
-                                            <table class="table data_table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Patient Name</th>
-                                                        <th>Service</th>
-                                                        <th>Doctor Name</th>
-                                                        <th>Title</th>
-                                                        <th>Details</th>
-                                                        <th>Date</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-border-bottom-0">
-                                                    <?php
-                                                    $feedbacks = mysqli_query(
-                                                        $mysqli,
-                                                        "SELECT f.feedback_id, u.user_names AS patient_name, ms.service_name, d.user_names AS doctor_name,
+                <?php if ($_SESSION['user_access_level'] != 'Patient') { ?>
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper">
+                        <!-- Content -->
+                        <div class="container-xxl flex-grow-1 container-p-y">
+                            <h4 class="fw-bold py-3 mb-4">
+                                <span class="text-muted fw-light">Feedbacks /</span> Manage
+                            </h4>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card mb-4">
+                                        <h5 class="card-header text-center">Manage Medical Services Feedbacks</h5>
+                                        <hr class="my-0" />
+                                        <div class="card-body">
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table data_table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Patient Name</th>
+                                                            <th>Service</th>
+                                                            <th>Doctor Name</th>
+                                                            <th>Title</th>
+                                                            <th>Details</th>
+                                                            <th>Date</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-border-bottom-0">
+                                                        <?php
+                                                        $feedbacks = mysqli_query(
+                                                            $mysqli,
+                                                            "SELECT f.feedback_id, u.user_names AS patient_name, ms.service_name, d.user_names AS doctor_name,
                                                         f.feedback_title, f.feedback_details, f.feedback_date
                                                         FROM feedbacks f
                                                         INNER JOIN users u ON u.user_id = f.feedback_user_id  
                                                         INNER JOIN medical_services ms ON ms.service_id = f.feedback_service_id 
                                                         INNER JOIN users d ON d.user_id = ms.service_assigned_user_id 
                                                         "
-                                                    );
-                                                    $cnt = 1;
-                                                    if (mysqli_num_rows($feedbacks) > 0) {
-                                                        while ($feedback = mysqli_fetch_array($feedbacks)) {
-                                                    ?>
-                                                            <tr>
-                                                                <td><?php echo $cnt; ?></td>
-                                                                <td><?php echo $feedback['patient_name']; ?></td>
-                                                                <td><?php echo $feedback['service_name']; ?></td>
-                                                                <td><?php echo $feedback['doctor_name']; ?></td>
-                                                                <td><?php echo $feedback['feedback_title']; ?></td>
-                                                                <td><?php echo $feedback['feedback_details']; ?></td>
-                                                                <td><?php echo date('d M Y g:ia', strtotime($feedback['feedback_date'])); ?></td>
-                                                                <td>
-                                                                    <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $feedback['feedback_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                                                </td>
-                                                            </tr>
-                                                    <?php
-                                                            $cnt = $cnt + 1;
-                                                        }
-                                                    } ?>
-                                                </tbody>
-                                            </table>
+                                                        );
+                                                        $cnt = 1;
+                                                        if (mysqli_num_rows($feedbacks) > 0) {
+                                                            while ($feedback = mysqli_fetch_array($feedbacks)) {
+                                                        ?>
+                                                                <tr>
+                                                                    <td><?php echo $cnt; ?></td>
+                                                                    <td><?php echo $feedback['patient_name']; ?></td>
+                                                                    <td><?php echo $feedback['service_name']; ?></td>
+                                                                    <td><?php echo $feedback['doctor_name']; ?></td>
+                                                                    <td><?php echo $feedback['feedback_title']; ?></td>
+                                                                    <td><?php echo $feedback['feedback_details']; ?></td>
+                                                                    <td><?php echo date('d M Y g:ia', strtotime($feedback['feedback_date'])); ?></td>
+                                                                    <td>
+                                                                        <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $feedback['feedback_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                        <?php
+                                                                $cnt = $cnt + 1;
+                                                            }
+                                                        } ?>
+                                                    </tbody>
+                                                </table>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper">
+                        <!-- Content -->
+                        <div class="container-xxl flex-grow-1 container-p-y">
+                            <h4 class="fw-bold py-3 mb-4">
+                                <span class="text-muted fw-light">Feedbacks /</span> Manage
+                            </h4>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card mb-4">
+                                        <h5 class="card-header text-center">Manage Medical Services Feedbacks</h5>
+                                        <hr class="my-0" />
+                                        <div class="card-body">
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table data_table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Service</th>
+                                                            <th>Doctor Name</th>
+                                                            <th>Title</th>
+                                                            <th>Details</th>
+                                                            <th>Date</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-border-bottom-0">
+                                                        <?php
+                                                        $feedbacks = mysqli_query(
+                                                            $mysqli,
+                                                            "SELECT f.feedback_id, u.user_names AS patient_name, ms.service_name, d.user_names AS doctor_name,
+                                                        f.feedback_title, f.feedback_details, f.feedback_date
+                                                        FROM feedbacks f
+                                                        INNER JOIN users u ON u.user_id = f.feedback_user_id  
+                                                        INNER JOIN medical_services ms ON ms.service_id = f.feedback_service_id 
+                                                        INNER JOIN users d ON d.user_id = ms.service_assigned_user_id 
+                                                        WHERE u.user_id = '{$user_id}'
+                                                        "
+                                                        );
+                                                        $cnt = 1;
+                                                        if (mysqli_num_rows($feedbacks) > 0) {
+                                                            while ($feedback = mysqli_fetch_array($feedbacks)) {
+                                                        ?>
+                                                                <tr>
+                                                                    <td><?php echo $cnt; ?></td>
+                                                                    <td><?php echo $feedback['service_name']; ?></td>
+                                                                    <td><?php echo $feedback['doctor_name']; ?></td>
+                                                                    <td><?php echo $feedback['feedback_title']; ?></td>
+                                                                    <td><?php echo $feedback['feedback_details']; ?></td>
+                                                                    <td><?php echo date('d M Y g:ia', strtotime($feedback['feedback_date'])); ?></td>
+                                                                    <td>
+                                                                        <a class="badge bg-label-danger" data-bs-toggle="modal" data-bs-target="#delete_<?php echo $feedback['feedback_id']; ?>" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                        <?php
+                                                                $cnt = $cnt + 1;
+                                                            }
+                                                        } ?>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
                 <!-- Footer -->
                 <?php require_once('../partials/footer.php'); ?>
                 <!-- / Footer -->
