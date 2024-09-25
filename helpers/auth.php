@@ -118,7 +118,7 @@ if (isset($_POST['Change_Password'])) {
     WHERE user_id = '{$user_id}'";
     if (mysqli_query($mysqli, $update_password_sql)) {
         $_SESSION['success'] = 'Logged in successfully';
-        header('Location: dashboard');
+        header('Location: home');
         exit;
     } else {
         $err = "Failed, please try again later";

@@ -107,44 +107,45 @@
                 </li>
             </ul>
         </li>
+        <?php if ($_SESSION['user_access_level'] == 'System Administrator') { ?>
 
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-group"></i>
-                <div data-i18n="Authentications">System Users</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="users_administrator" class="menu-link">
-                        <div data-i18n="Basic">Administrators</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="users_doctors" class="menu-link">
-                        <div data-i18n="Basic">Doctors</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="users_patients" class="menu-link">
-                        <div data-i18n="Basic">Patients</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-chat"></i>
-                <div data-i18n="Misc">Feedbacks</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="feedbacks_manage" class="menu-link">
-                        <div data-i18n="Under Maintenance">Manage</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-group"></i>
+                    <div data-i18n="Authentications">System Users</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="users_administrator" class="menu-link">
+                            <div data-i18n="Basic">Administrators</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="users_doctors" class="menu-link">
+                            <div data-i18n="Basic">Doctors</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="users_patients" class="menu-link">
+                            <div data-i18n="Basic">Patients</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-chat"></i>
+                    <div data-i18n="Misc">Feedbacks</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="feedbacks_manage" class="menu-link">
+                            <div data-i18n="Under Maintenance">Manage</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        <?php } ?>
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Reports</span></li>
         <!-- Cards -->
