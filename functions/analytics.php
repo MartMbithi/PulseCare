@@ -62,39 +62,78 @@
  *   paid—if any. No drama, no big payouts, just pixels and code.
  *
  */
+if ($user_access_level != 'Patient') {
+    $query = "SELECT COUNT(*) FROM medical_services";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($medical_services);
+    $stmt->fetch();
+    $stmt->close();
 
-$query = "SELECT COUNT(*) FROM medical_services";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($medical_services);
-$stmt->fetch();
-$stmt->close();
+    $query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Doctor'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($doctors);
+    $stmt->fetch();
+    $stmt->close();
 
-$query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Doctor'";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($doctors);
-$stmt->fetch();
-$stmt->close();
+    $query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Patient'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($patients);
+    $stmt->fetch();
+    $stmt->close();
 
-$query = "SELECT COUNT(*) FROM users WHERE user_access_level = 'Patient'";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($patients);
-$stmt->fetch();
-$stmt->close();
-
-$query = "SELECT COUNT(*) FROM feedbacks";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($feedbacks);
-$stmt->fetch();
-$stmt->close();
+    $query = "SELECT COUNT(*) FROM feedbacks";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($feedbacks);
+    $stmt->fetch();
+    $stmt->close();
 
 
-$query = "SELECT COUNT(*) FROM appointments";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($all_appointments);
-$stmt->fetch();
-$stmt->close();
+    $query = "SELECT COUNT(*) FROM appointments";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($all_appointments);
+    $stmt->fetch();
+    $stmt->close();
+} else {
+    $query = "SELECT COUNT(*) FROM medical_services";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($medical_services);
+    $stmt->fetch();
+    $stmt->close();
+
+    $query = "SELECT COUNT(*) FROM feedbacks WHERE feedback_user_id  = '{$user_id}' ";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($feedbacks);
+    $stmt->fetch();
+    $stmt->close();
+
+
+    $query = "SELECT COUNT(*) FROM appointments WHERE appointment_user_id   = '{$user_id}'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($my_appointments);
+    $stmt->fetch();
+    $stmt->close();
+
+    $query = "SELECT COUNT(*) FROM appointments WHERE appointment_user_id   = '{$user_id}' 
+    AND  appointment_status = 'Approved'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($approved_appointments);
+    $stmt->fetch();
+    $stmt->close();
+
+    $query = "SELECT COUNT(*) FROM appointments WHERE appointment_user_id   = '{$user_id}' 
+    AND  appointment_status = 'Cancelled'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($cancelled_appointments);
+    $stmt->fetch();
+    $stmt->close();
+}
